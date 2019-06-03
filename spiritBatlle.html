@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SpiritBattle</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-image: url(fon.jpg);">
+		<div class="text-center  " style="display: flex; margin-left: 380px ">
+			<div>
+				<img src="spirit.jpg">
+			</div>
+			<div>
+				<img src="battle.jpg">
+			</div>
+			
+		</div>
+	<div style="height: 300px;width: 500px; background-image: url(piX.gif);" class="panel col-10 container">
+		<div  style="height: 50px; ">
+		<div style="text-align: center;">
+			<img src="b2.png" class="hero" >
+			<img src="b3.png" class="hero">
+		</div>
+
+			<div style="text-align: center;">
+			<img src="b1.png" class="hero" >
+			<img src="b4.jpg" class="hero">
+
+			</div>
+		
+		</div>
+			
+		</div>
+		
+	</div>
+	<div class="arena" style="height: 500px;background-image: url(banner.jpg);background-size: 100% 100%;display: none; " class="d-flex">
+		<h1 class="time text-center text-light">50</h1>
+		<div style="padding-top: 0px;position: absolute; margin-left: 380px;" class="dvig">
+			<h3  class="hp text-center text-danger"  style="display: none; ">400</h3>
+			<img src="king.jpg" class="boew" style="display: none; margin-right: 50px">
+			<img src="scorp.jpg" class="boew" style="display: none;">
+			<img src="dzima.jpg" class="boew" style="display: none;">
+			<img src="SK.png" class="boew" style="display: none;">
+		</div>
+		<div style="padding-top: 0px; margin-left: 1200px;position: absolute; ">
+			<h3 class="hp2 text-center text-danger" style="display: none;"> 400</h3>
+			<img src="Natsu.jpg" class="boew2" style="display: none">
+			<img src="Yosh.jpg" class="boew2" style="display: none;">
+			<img src="shed.jpg" class="boew2" style="display: none;">
+			<img src="banan.jpg" class="boew2" style="display: none;">
+		</div>
+		
+	</div>
+	<div class="container boyi text-center " style="height: 190px;width: 500px ;display: none;">
+			<button type="button" class="btn btn-primary btn-lg btn-block">Удар рукой</button>
+			<button type="button" class="btn1 btn-primary btn-lg btn-block">Удар ногой</button>
+			<div style="margin-right: 250px">
+				<button type="button" class="btn btn2 btn-danger btn-lg" style="display: none;" >X-RAY</button>
+			</div>
+			
+		</div>
+		<div class="container okno text-center col-12 " style="position: absolute; bottom: 600px">
+			<h1 class="win display-1 text-primary" style="display: none;">YOU WIN</h1>
+			<h1 class="lose display-1 text-warning" style="display: none">YOU LOSE </h1>
+		</div>
+		
+		
+	<script type="text/javascript">
+	let ishez =	document.querySelector(".panel");
+	let arena = document.querySelector(".arena");
+	let stone = document.querySelector(".hp");
+	let stone2 = document.querySelector(".hp2");
+	let fight = document.querySelector(".btn1");
+	let fight2 = document.querySelector(".btn2");
+	let ypravlenia = document.querySelector(".boyi");
+	let raund = document.querySelectorAll(".hero");
+	let boew = document.querySelectorAll(".boew");
+	let boew2 = document.querySelectorAll(".boew2");
+	let ydarr = document.querySelector(".btn")
+	let ydarn = document.querySelector(".btn1")
+	let combo = document.querySelector(".btn2")
+	let win = document.querySelector(".win")
+	let lose = document.querySelector(".lose")
+	//элементы
+	
+	
+	let time = 50;
+	let hpplayer1 = 400;
+	let hpplayer2 = 400;
+	
+	//счет
+	let audio = new Audio(); // Создаём новый элемент Audio
+	let audio1 = new Audio(); 
+	let audio3 = new Audio(); 
+	let audio4 = new Audio(); 
+	let audio5 = new Audio();
+	//эффекты
+		for(let index = 0; index<4; index = index + 1){//цикл
+			
+		raund[index].onclick = function(){
+			
+		let check = function(){
+ 		time=time-1
+		document.querySelector(".time").innerHTML = time
+		if ( time  ==  0 && hpplayer2>  hpplayer1 ) {//время проигрыш
+			lose.style.display = "block"
+			clearInterval(stop)
+			clearInterval(stop1)
+
+			audio.src = 'bitva.mp3'; 
+			audio.autoplay = false;
+
+			audio5.src = 'fu.mp3'; 
+			 audio5.autoplay = true; 
+
+			let lam = function(){
+			time = 50;
+			document.querySelector(".time").innerHTML = time
+			hpplayer1 = 400;
+			stone.innerHTML = hpplayer1
+			hpplayer2 = 400;
+			stone2.innerHTML = hpplayer2
+
+			boew[index].style.display = "none"
+			boew2[round].style.display = "none"
+			stone.style.display = "none"
+			stone2.style.display = "none"
+			ypravlenia.style.display ="none"
+			win.style.display = "none"
+			lose.style.display = "none"
+			arena.style.display = "none"
+			arena.style.backgroundImage = "url(banner5.jpg)"
+			combo.style.display = "none"
+			ishez.style.display = "block"
+			audio5.src = 'fu.mp3'; 
+			 audio5.autoplay = false; 
+			}
+			setTimeout(lam,5000)
+		} 
+		if ( time  ==  0 && hpplayer1> hpplayer2 ) {//время выйгрыш
+			win.style.display = "block"
+			clearInterval(stop)
+			clearInterval(stop1)
+
+			audio.src = 'bitva.mp3'; 
+			audio.autoplay = false;
+
+			audio4.src = 'aplodis.mp3'; 
+			audio4.autoplay = true; 
+			let lam = function(){
+			time = 50;
+			document.querySelector(".time").innerHTML = time
+			hpplayer1 = 400;
+			stone.innerHTML = hpplayer1
+			hpplayer2 = 400;
+			stone2.innerHTML = hpplayer2
+			boew[index].style.display = "none"
+			boew2[round].style.display = "none"
+			stone.style.display = "none"
+			stone2.style.display = "none"
+			ypravlenia.style.display ="none"
+			win.style.display = "none"
+			lose.style.display = "none"
+			arena.style.display = "none"
+			arena.style.backgroundImage = "url(banner4.jpg)"
+			combo.style.display = "none"
+			ishez.style.display = "block"
+			audio4.src = 'aplodis.mp3'; 
+			audio4.autoplay = false; 
+			}
+			setTimeout(lam,10000)
+
+		} 
+		if(hpplayer2 <= 0 ){//выйгрыш
+			win.style.display = "block"
+			clearInterval(stop)
+			clearInterval(stop1)
+
+			audio.src = 'bitva.mp3'; 
+			audio.autoplay = false;
+
+			 audio4.src = 'aplodis.mp3'; 
+			 audio4.autoplay = true; 
+
+			let lam = function(){
+			time = 50;
+			document.querySelector(".time").innerHTML = time
+			hpplayer1 = 400;
+			stone.innerHTML = hpplayer1
+			hpplayer2 = 400;
+			stone2.innerHTML = hpplayer2
+
+			boew[index].style.display = "none"
+			boew2[round].style.display = "none"
+			stone.style.display = "none"
+			stone2.style.display = "none"
+			ypravlenia.style.display ="none"
+			win.style.display = "none"
+			lose.style.display = "none"
+			arena.style.display = "none"
+			arena.style.backgroundImage = "url(banner3.jpg)"
+			combo.style.display = "none"
+			ishez.style.display = "block"
+			 audio4.src = 'aplodis.mp3'; 
+			 audio4.autoplay = false; 
+			}
+			setTimeout(lam,10000)
+		}
+		if (hpplayer1<= 0) { //проигрыш
+			lose.style.display = "block"
+			clearInterval(stop)
+			clearInterval(stop1)
+
+			audio.src = 'bitva.mp3'; 
+			audio.autoplay = false;
+
+			audio5.src = 'fu.mp3'; 
+			audio5.autoplay = true; 
+
+			let lam = function(){
+			time = 50;
+			document.querySelector(".time").innerHTML = time
+			hpplayer1 = 400;
+			stone.innerHTML = hpplayer1
+			hpplayer2 = 400;
+			stone2.innerHTML = hpplayer2
+
+			boew[index].style.display = "none"
+			boew2[round].style.display = "none"
+			stone.style.display = "none"
+			stone2.style.display = "none"
+			ypravlenia.style.display ="none"
+			win.style.display = "none"
+			lose.style.display = "none"
+			arena.style.display = "none"
+			arena.style.backgroundImage = "url(banner2.jpg)"
+			combo.style.display = "none"
+			ishez.style.display = "block"
+			 audio5.src = 'fu.mp3'; 
+			 audio5.autoplay = false; 
+			}
+			setTimeout(lam,5000)
+
+		}
+		 if (time== 25) { //появление храй	
+		 	combo.style.display = "block"
+			let tim = function(){
+			combo.style.display = "none"
+
+			}
+			setTimeout(tim,3000)
+			
+		}
+		}
+		//условия
+	let stop =setInterval(check, 1000)
+
+		let draka = function(){
+		let rand2 = Math.random() * 30;
+		let round2 = Math.floor(rand2);
+ 		hpplayer1 = hpplayer1 - round2
+		stone.innerHTML = hpplayer1
+		
+		}
+	let stop1= setInterval(draka, 1600)
+			
+			ishez.style.display = "none"
+			arena.style.display = "block"
+			stone.style.display = "block"
+			stone2.style.display = "block"
+			boew[index].style.display = "block"
+			let rand = Math.random() * 4;
+			let round = Math.floor(rand);
+			boew2[round].style.display = "block"
+			ypravlenia.style.display = "block"
+			ydarr.onclick = function(){
+				let combinet = Math.random() * 10;
+				let combi = Math.floor(combinet);
+				hpplayer2 = hpplayer2 - combi
+				stone2.innerHTML = hpplayer2
+			  audio1.src = 'udr.mp3'; 
+			  audio1.autoplay = true; 
+			
+			}
+			ydarn.onclick = function(){
+				let combinet2 = Math.random() * 15
+				let combi2 = Math.floor(combinet2)
+				hpplayer2 = hpplayer2 - combi2
+				stone2.innerHTML = hpplayer2
+			  	audio1.src = 'udr.mp3'; 
+			  	audio1.autoplay = true; 
+			}
+			combo.onclick = function(){
+				hpplayer2 = hpplayer2 - 40
+				combo.style.display = "none"
+				stone2.innerHTML = hpplayer2
+			  	audio3.src = 'xray.mp3'; 
+			  	audio3.autoplay = true;
+			}
+			
+			  
+			  audio.src = 'bitva.mp3'; // Указываем путь к звуку "клика"
+			  audio.autoplay = true; // Автоматически запускаем
+			
+			
+			//действия
+			
+			
+			
+
+		}
+	}
+	
+		
+	
+
+
+	</script>
+	
+</body>
+</html>
